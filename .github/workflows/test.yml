@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - master
-
+  schedule:
+    # Run every hour. This helps detect flakiness,
+    # and broken external dependencies.
+    - cron:  '0 * * * *'
+    
 jobs:
   build_and_test:
     runs-on: ${{ matrix.os }}
